@@ -1,3 +1,6 @@
 #!/usr/bin/python3
-def (a,b):
-    return a**b
+def pow(a,b):
+    result =1 
+    for i in range(b):
+        result *=a
+    return result
