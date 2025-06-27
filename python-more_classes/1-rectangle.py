@@ -1,10 +1,15 @@
 #!/usr/bin/python3
+"""
+This module defines the Rectangle class with private width and height attributes,
+including property getters and setters with type and value validation.
+"""
+
 class Rectangle:
     """Rectangle class with width and height properties and validation."""
-    
+
     def __init__(self, width=0, height=0):
-        self.width = width  # will invoke the setter with validation
-        self.height = height  # will invoke the setter with validation
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
