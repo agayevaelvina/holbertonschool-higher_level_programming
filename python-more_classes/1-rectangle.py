@@ -1,15 +1,19 @@
 #!/usr/bin/python3
 class Rectangle:
+    """Rectangle class with width and height properties and validation."""
+    
     def __init__(self, width=0, height=0):
-        self.width = width
-        self.height = height
+        self.width = width  # will invoke the setter with validation
+        self.height = height  # will invoke the setter with validation
 
     @property
     def width(self):
+        """Retrieve the width."""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Set the width with validation."""
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
@@ -18,10 +22,12 @@ class Rectangle:
 
     @property
     def height(self):
+        """Retrieve the height."""
         return self.__height
 
     @height.setter
     def height(self, value):
+        """Set the height with validation."""
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value < 0:
