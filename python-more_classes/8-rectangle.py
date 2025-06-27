@@ -99,4 +99,12 @@ class Rectangle:
 
         if rect_1.area() >= rect_2.area():
             return rect_1
-        return rect_2
+   [pycodestyle] Command to run:
+pycodestyle 8-rectangle.py
+su student_jail -c 'timeout 30 bash -c '"'"'pycodestyle 8-rectangle.py'"'"''
+[pycodestyle] Return code: 1
+[pycodestyle] Student stdout:
+8-rectangle.py:77:80: E501 line too long (80 > 79 characters)
+[pycodestyle] Student stdout length: 62
+[pycodestyle] Student stderr:
+[pycodestyle] Student stderr length: 0     return rect_2
