@@ -1,14 +1,22 @@
 #!/usr/bin/python3
+#!/usr/bin/python3
 """
 Script that adds all arguments to a Python list,
 then saves them to a file using JSON format.
-
-Usage: ./7-add_item.py <item1> <item2> ...
 """
 
 import sys
-from save_to_json_file import save_to_json_file
-from load_from_json_file import load_from_json_file
+import json
+
+def save_to_json_file(my_obj, filename):
+    """Writes an object to a text file using JSON representation."""
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(my_obj, f)
+
+def load_from_json_file(filename):
+    """Creates an object from a JSON file."""
+    with open(filename, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 filename = "add_item.json"
 
