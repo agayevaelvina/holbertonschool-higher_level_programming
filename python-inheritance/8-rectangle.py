@@ -1,16 +1,20 @@
-#!/usr/bin/python3
-"""
-This module contains the BaseGeometry class with basic validation methods.
+#!/usr/bin/pyton3
+"""Module that defines a Rectangle class inheriting from BaseGeometry
 """
 
-class BaseGeometry:
-    """
-    Base class for geometry objects.
-    Provides a method to validate integer values.
-    """
-    def integer_validator(self, name, value):
-        """
-        Validates that a value is a positive integer.
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+class Rectangle(BaseGeometry):
+    """Rectangle class inheriting from BaseGeometry"""
+
+    def __init__(self, width, height):
+        """Initialize a rectangle with width and height
 
         Args:
-            name (str): The name of the value (used in exception messages).
+            width (int): width of the rectangle
+            height (int): height of the rectangle
+        """
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
+        self.__width = width
+        self.__height = height
