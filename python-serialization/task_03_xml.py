@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
+
 import xml.etree.ElementTree as ET
 
 def serialize_to_xml(dictionary, filename):
-    """
-    Serializes a Python dictionary to an XML file.
-
-    Parameters:
-    - dictionary (dict): The dictionary to serialize.
-    - filename (str): The filename where the XML data will be saved.
-    """
+    """    Serializes  Python dictionary to an XML file """
     root = ET.Element("data")
 
     for key, value in dictionary.items():
@@ -23,15 +18,7 @@ def serialize_to_xml(dictionary, filename):
 
 
 def deserialize_from_xml(filename):
-    """
-    Deserializes XML data from a file into a Python dictionary.
-
-    Parameters:
-    - filename (str): The XML file to read.
-
-    Returns:
-    - dict: The deserialized dictionary.
-    """
+    """ Deserializes XML data from a file into a Python dictionary.  """
     try:
         tree = ET.parse(filename)
         root = tree.getroot()
