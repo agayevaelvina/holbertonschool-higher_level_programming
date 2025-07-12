@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-"""Fetches https://intranet.hbtn.io/status"""
+"""Fetches a URL and displays response details"""
 
 from urllib import request
 
 if __name__ == "__main__":
-    url = "https://intranet.hbtn.io/status"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    url = "http://0.0.0.0:5050/status"
 
-    req = request.Request(url, headers=headers)
-
-    with request.urlopen(req) as response:
+    with request.urlopen(url) as response:
         body = response.read()
         print("Body response:")
         print("\t- type:", type(body))
