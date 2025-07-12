@@ -1,15 +1,20 @@
 #!/usr/bin/python3
-"""Fetches https://intranet.hbtn.io/status using urllib"""
+"""Fetches a URL"""
+from urllib import request
 
-import urllib.request
+if __name__ == "__main__":
+    """Makes code executable when it is directly run"""
+    url = "https://intranet.hbtn.io/status"
+    req = request.Request(url)
+    req.add_header('cfclearance', 'true')
 
-url = "https://intranet.hbtn.io/status"
-headers = {"User-Agent": "Mozilla/5.0"}
-req = urllib.request.Request(url, headers=headers)
+    with request.urlopen(req) as response:
+        """Opens the url and reads the contents"""
+        body = response.read()
+        utf8_content = body.decode('utf-8')
 
-with urllib.request.urlopen(url) as response:
-    body = response.read()
+    """Prints out the desired output"""
     print("Body response:")
     print("\t- type:", type(body))
     print("\t- content:", body)
-    print("\t- utf8 content:", body.decode('utf-8'))
+    print("\t- utf8 content:", utf8_content)
