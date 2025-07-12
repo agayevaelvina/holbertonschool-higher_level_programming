@@ -1,14 +1,20 @@
 #!/usr/bin/python3
-"""Fetches a URL and displays response details"""
-
+"""Fetches a URL"""
 from urllib import request
 
 if __name__ == "__main__":
-    url = "http://0.0.0.0:5050/status"
+    """Makes code executable when it is directly run"""
+    url = "https://intranet.hbtn.io/status"
+    req = request.Request(url)
+    req.add_header('cfclearance', 'true')
 
-    with request.urlopen(url) as response:
+    with request.urlopen(req) as response:
+        """Opens the url and reads the contents"""
         body = response.read()
-        print("Body response:")
-        print("\t- type:", type(body))
-        print("\t- content:", body)
-        print("\t- utf8 content:", body.decode("utf-8"))
+        utf8_content = body.decode('utf-8')
+
+    """Prints out the desired output"""
+    print("Body response:")
+    print("\t- type:", type(body))
+    print("\t- content:", body)
+    print("\t- utf8 content:", utf8_content)
