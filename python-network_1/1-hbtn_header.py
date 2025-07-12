@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+""" Response header value """
+
+
+import urllib.request
 import sys
-from urllib import request
-
-url = sys.argv[1]
-
-with request.urlopen(url) as response:
-    headers = response.info()
-    print(headers.get('X-Request-Id'))
+if __name__ == "__main__":
+    with urllib.request.urlopen(sys.argv[1]) as response:
+        print(response.headers.get('X-Request-Id'))
