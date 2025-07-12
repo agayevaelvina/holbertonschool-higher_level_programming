@@ -4,6 +4,8 @@
 import urllib.request
 
 url = "https://intranet.hbtn.io/status"
+headers = {"User-Agent": "Mozilla/5.0"}
+req = urllib.request.Request(url, headers=headers)
 
 with urllib.request.urlopen(url) as response:
     body = response.read()
