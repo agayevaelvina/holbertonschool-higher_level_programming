@@ -1,5 +1,5 @@
 import requests
-import CSV
+import csv
 
 def fetch_and_print_posts():
     url = "https://jsonplaceholder.typicode.com/posts"
