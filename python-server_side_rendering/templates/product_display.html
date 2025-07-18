@@ -1,28 +1,29 @@
+<!-- templates/product_display.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Product Display</title>
 </head>
 <body>
-    <h1>Product List</h1>
-
+    <h1>Products</h1>
     {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% else %}
+        <p style="color: red;">{{ error }}</p>
+    {% elif products %}
         <table border="1">
             <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
+                <th>ID</th><th>Name</th><th>Price</th><th>Category</th>
             </tr>
             {% for product in products %}
                 <tr>
+                    <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.category }}</td>
                     <td>${{ product.price }}</td>
+                    <td>{{ product.category }}</td>
                 </tr>
             {% endfor %}
         </table>
+    {% else %}
+        <p>No product data found.</p>
     {% endif %}
 </body>
 </html>
