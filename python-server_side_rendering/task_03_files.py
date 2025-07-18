@@ -1,54 +1,37 @@
-from flask import Flask, render_template, request
-import json
-import csv
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-def read_json(file_path):
-    try:
-        with open(file_path, 'r') as f:
-            return json.load(f)
-    except Exception as e:
-        return []
-
-def read_csv(file_path):
-    products = []
-    try:
-        with open(file_path, 'r') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                # Convert price to float and id to int
-                row['id'] = int(row['id'])
-                row['price'] = float(row['price'])
-                products.append(row)
-        return products
-    except Exception as e:
-        return []
+# Example product data (you can load from JSON file if needed)
+products = [
+    {"id": 1, "name": "Laptop", "price": 999},
+    {"id": 2, "name": "Coffee Mug", "price": 12},
+    {"id": 3, "name": "Smartphone", "price": 599}
+]
 
 @app.route('/products')
-def products():
-    source = request.args.get('source')
-    product_id = request.args.get('id', type=int)
-    products = []
-    error = None
+def products_route():
+    source = request.args.get('source', 'json')
+    id_str = request.args.get('id')
 
-    if source == 'json':
-        products = read_json('products.json')
-    elif source == 'csv':
-        products = read_csv('products.csv')
-    else:
-        error = "Wrong source"
-        return render_template("product_display.html", error=error)
+    if source != 'json':
+        return "Wrong source", 400
 
-    # Convert dict keys to dot notation using SimpleNamespace
-    from types import SimpleNamespace
-    products = [SimpleNamespace(**p) for p in products]
+    if id_str:
+        try:
+            prod_id = int(id_str)
+        except ValueError:
+            return "Invalid ID", 400
 
-    if product_id:
-        filtered = [p for p in products if p.id == product_id]
-        if not filtered:
-            error = "Product not found"
-        else:
-            products = filtered
+        product = next((p for p in products if p['id'] == prod_id), None)
+        if not product:
+            return "Product not found", 404
+        # Return product JSON as string (or render template)
+        return jsonify(product)
 
-    return render_template("product_display.html", products=products, error=error)
+    # Return all products as JSON list
+    return jsonify(products)
+
+if __name__ == "__main__":
+    # Use use_reloader=False to avoid double startup in background run
+    app.run(debug=True, use_reloader=False)
